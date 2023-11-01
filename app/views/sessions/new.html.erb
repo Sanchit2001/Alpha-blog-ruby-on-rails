@@ -1,0 +1,34 @@
+<h1 class="text-center">Log In</h1>
+
+<div class="bg-light d-flex justify-content-center " style="height: 100vh;">
+  <div class="card mx-auto" style="min-width: 50%; height: fit-content; margin-top: 100px;">
+    <div class="card-body">
+      <style>
+        .larger-font {
+          font-size: 1.5rem;
+        }
+
+        .larger-padding {
+          padding: 20px; 
+        }
+      </style>
+      <%= form_with(scope: :session, url:login_path, local: true) do |f| %>
+
+        <div class="form-group larger-font larger-padding" style="display: flex;">
+          <%= f.label :email, class: 'font-weight-bold mx-2' %>
+          <%= f.email_field :email, class: 'form-control mx-2', placeholder: 'Enter Email' %>
+        </div>
+
+        <div class="form-group larger-font larger-padding" style="display: flex;">
+          <%= f.label :password, class: 'font-weight-bold mx-2' %>
+          <%= f.password_field :password, class: 'form-control mx-2', rows: 4, placeholder: 'Enter Your Password' %>
+        </div>
+
+        <div class="p-3 m-3 align-items-center">
+          <%= f.submit "Log In", class: 'btn btn-success px-5' %>
+          <%= link_to 'Return to all Articles', articles_path, class: 'btn btn-secondary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
