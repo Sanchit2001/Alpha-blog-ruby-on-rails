@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
     end
 
     def create
-        @article  = Article.new(params.require(:article).permit(:title, :description))
+        @article  = Article.new(params.require(:article).permit(:title, :description, category_ids: []))
         @article.user = current_user
         logger.debug "Article should be valid: #{@article.valid?}"
         if @article.save
@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
     
     def update
         logger.debug "Article should be valid: #{@article.valid?}"
-        if @article.update(params.require(:article).permit(:title, :description))
+        if @article.update(params.require(:article).permit(:title, :description, category_ids: []))
             flash[:notice] = "Article updated successfully"
             redirect_to @article
         else

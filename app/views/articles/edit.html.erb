@@ -8,23 +8,28 @@
     </ul>
 <% end %>
 
-<div style="display: flex; justify-content: center; min-height: 100vh; background-color: #f0f0f0;">
-  <div class="card mt-5" style="width: 50%; height: 50vh; padding: 20px; background-color: #fff; text-align: left;">
-    <%= form_with(model: @article, local: true) do |f| %>
-      <div class="form-group mt-3">
-        <%= f.label :title, class: "font-weight-bold" %>
-        <p class="mt-3"></p>
-        <%= f.text_field :title, class: "form-control" %>
+<%= form_with(model: @article, local: true) do |f| %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <%= f.label :title, class: 'font-weight-bold' %>
+          <%= f.text_field :title, class: 'form-control', placeholder: 'Enter a title' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :description, class: 'font-weight-bold' %>
+          <%= f.text_area :description,rows:10, class: 'form-control', placeholder: 'Enter a description' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :category, class: 'font-weight-bold' %>
+          <%= f.collection_select(:category_ids, Category.all,:id, :name, {prompt: "Select all the related categories(can be empty)"}, { multiple: true, size: 3, class: "custom-select mt-3" }) %>
+        </div>
+
+        <div class="mt-3">
+          <%= f.submit 'Submit', class: 'btn btn-primary' %>
+          <%= link_to 'Return to all Articles', articles_path, class: 'btn btn-secondary' %>
+        </div>
       </div>
-      <div class="form-group mt-3">
-        <%= f.label :description, class: "font-weight-bold" %>
-        <p class="mt-3"></p>
-        <%= f.text_area :description, class: "form-control" %>
-      </div>
-      <div class="text-center mt-5">
-        <%= f.submit "Submit", class: "btn btn-primary" %>
-        <%= link_to 'Cancel and Return to all Articles', articles_path, class: "btn btn-secondary ml-2" %>
-      </div>
-    <% end %>
+    </div>
   </div>
-</div>
+<% end %>

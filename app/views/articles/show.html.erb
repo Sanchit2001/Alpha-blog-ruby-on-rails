@@ -4,6 +4,7 @@
   <div class="card" style="width: 50%; padding: 20px; text-align: left;">
     <h3 style="font-size: 30px; margin-bottom: 10px;">Title: <%= @article.title %></h3>
     <h3 style="font-size: 20px; margin-bottom: 10px; display: flex;">By: <%=link_to @article.user.username, @article.user, class:'nav-link' %></h3>
+    <p style="font-size: 20px; margin-bottom: 20px;"></p>
     <p style="font-size: 20px; margin-bottom: 20px;"><strong>Description:</strong> <%= @article.description %></p>
     <div style="display: flex; justify-content: space-between;">
       <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
